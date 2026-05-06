@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f3f2;
+            color: #3d3b3b;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .shadow-custom {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        /* Custom styles for video element */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem; /* Rounded corners for the container */
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Styles for the image overlay */
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        /* Styles for the video overlay */
+        #videoOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #videoOverlay.active {
+            display: flex;
+        }
+
+        #videoOverlay video {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 10px;
+        }
+
+        #closeVideoBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Styles for the image carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 100%; /* Or a fixed width */
+            margin: auto;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        /* Added cursor pointer to images */
+        .carousel-slide img {
+            width: 100%;
+            flex-shrink: 0; /* Prevents images from shrinking */
+            display: block;
+            object-fit: contain; /* Ensures image fits within its container without cropping */
+            height: auto;
+            max-height: 450px; /* Optional: limit height for consistency */
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .carousel-button:hover {
+            opacity: 1;
+        }
+        .carousel-button.prev {
+            left: 10px;
+        }
+        .carousel-button.next {
+            right: 10px;
+        }
+        .carousel-dots {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body class="p-6">
+
+    <div class="container mx-auto mt-8 p-6 sm:p-8 md:p-10 bg-white rounded-3xl shadow-custom">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-pink-600 tracking-tight">Happy Birthday!🥳🥳🥳</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-700">To my dearest [Fevitaaaa]</p>
+        </header>
+
+        <section class="mb-10 text-center">
+            <div class="bg-pink-50 rounded-xl p-6 hover-lift">
+                <h2 class="text-3xl md:text-4xl font-bold text-pink-500 mb-4">Good Vibes Only✨✨✨...</h2>
+            </div>
+        </section>
+
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-pink-500 mb-6">A Voice Message</h2>
+            <audio controls class="w-full md:w-3/4 lg:w-2/3 mx-auto bg-gray-100 p-4 rounded-xl shadow-md">
+                <source src="happyBD fevu.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </section>
+        
+        <section class="mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-pink-500 mb-6">Open It</h2>
+            <div class="video-container">
+                <video controls loop playsinline class="w-full h-full" poster="video1.mp4">
+                    <source src="Fevu V1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="text-center mt-4">
+                <!-- FIX: Corrected filename to match the video tag source -->
+                <button onclick="openVideoFullscreen('Fevu V1.mp4')" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full hover:bg-pink-600 transition-colors">
+                    View Fullscreen
+                </button>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-pink-500 mb-6">Another one😁😁</h2>
+            <div class="video-container">
+                <video controls loop playsinline class="w-full h-full" poster="video2.mp4">
+                    <source src="fevu V2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="text-center mt-4">
+                <!-- FIX: Corrected filename to match the video tag source -->
+                <button onclick="openVideoFullscreen('fevu V2.mp4')" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full hover:bg-pink-600 transition-colors">
+                    View Fullscreen
+                </button>
+            </div>
+        </section>
+
+        <section class="mb-10 text-center">
+            <div class="bg-pink-50 rounded-xl p-6 hover-lift">
+                <p class="text-gray-800 leading-relaxed text-base md:text-lg">
+                    Happy Birthday!
+                </p>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-pink-500 mb-6">preety Album🧚‍♀️🧚‍♀️🧚‍♀️</h2>
+            <div class="carousel-container">
+                <div class="carousel-slide" id="carouselSlide">
+                    <!-- ADDED: onclick and cursor-pointer class to enable fullscreen image viewing -->
+                    <img src="Fpic1.jpg" alt="Memory 1" onclick="openFullscreen(this)" class="cursor-pointer">
+                    <img src="Fpic2.jpg" alt="Memory 2" onclick="openFullscreen(this)" class="cursor-pointer">
+                    <img src="Fpic 6.jpg" alt="Memory 6" onclick="openFullscreen(this)" class="cursor-pointer">
+                    <img src="Fpic7.jpg" alt="Memory 7" onclick="openFullscreen(this)" class="cursor-pointer">
+                    </div>
+                <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </section>
+
+        <section class="mb-10 text-center">
+            <div class="bg-pink-50 rounded-xl p-6 hover-lift">
+                <p class="text-gray-800 leading-relaxed text-base md:text-lg">
+                    While wishing you happiest birthday, 1 ametesh new 2 ametesh new ...😂😂 edmew yekoyen ena enkuan lezi ken abekash rejm edme kedesta gar yanuresh yene kechacha demo atweferim ende beyi kemilush toxic sewoch raqi 😁😁 enkuan norshelen Happy Birthday my dear.
+                </p>
+            </div>
+        </section>
+        
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-pink-500 mb-6">Created With Love By:</h2>
+            <div class="bg-pink-50 rounded-xl p-6 hover-lift">
+                <p class="text-gray-800 leading-relaxed text-base md:text-lg mb-4">
+                    For inquiries about digital gift:
+                </p>
+                <div class="flex flex-col items-center gap-4">
+                    <a href="mailto:tesnimaramaz@gmail.com" class="text-pink-500 font-bold hover:underline">
+                        tesnimaramaz@gmail.com
+                    </a>
+                    <a href="tel:251-982864848" class="text-pink-500 font-bold hover:underline">
+                        251-982864848
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+        
+    <div id="imageOverlay" class="image-overlay" onclick="closeFullscreen()">
+        <img id="fullscreenImage" src="" alt="Full Screen Image">
+    </div>
+
+    <div id="videoOverlay">
+        <span id="closeVideoBtn" onclick="closeVideoFullscreen()">&times;</span>
+        <!-- Added 'muted' here to satisfy some browser autoplay policies, though we explicitly unmute in JS -->
+        <video id="fullscreenVideo" controls loop playsinline muted class="rounded-xl"></video>
+    </div>
+
+    <script>
+        // Fullscreen Image Functions (Existing)
+        function openFullscreen(imageElement) {
+            const overlay = document.getElementById('imageOverlay');
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            fullscreenImage.src = imageElement.src;
+            overlay.classList.add('active');
+        }
+
+        function closeFullscreen() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.classList.remove('active');
+        }
+
+        // Fullscreen Video Functions (FIXED LOGIC - Ensures the new video source is loaded)
+        function openVideoFullscreen(videoSrc) {
+            const overlay = document.getElementById('videoOverlay');
+            const videoElement = document.getElementById('fullscreenVideo');
+            
+            // 1. Set the video source
+            videoElement.src = videoSrc;
+            
+            // 2. Load the new source data (CRUCIAL FIX)
+            videoElement.load();
+            
+            // 3. Show the overlay
+            overlay.classList.add('active');
+            
+            // 4. Unmute it and attempt to play 
+            videoElement.muted = false; 
+            videoElement.play().catch(error => {
+                console.warn("Autoplay failed in fullscreen. User must click play button.", error);
+            });
+        }
+
+        function closeVideoFullscreen() {
+            const overlay = document.getElementById('videoOverlay');
+            const videoElement = document.getElementById('fullscreenVideo');
+            videoElement.pause();
+            videoElement.currentTime = 0; // Reset video to start
+            overlay.classList.remove('active');
+            videoElement.src = ''; // Clear source to prevent ghost audio
+            videoElement.muted = true; // Mute on close
+        }
+
+        // Image Carousel Logic (Existing)
+        const carouselSlide = document.getElementById('carouselSlide');
+        // Added a check here to ensure carouselSlide exists before querying images
+        const images = carouselSlide ? carouselSlide.querySelectorAll('img') : [];
+        const totalImages = images.length;
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        const createDots = () => {
+            const dotsContainer = document.getElementById('carouselDots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = ''; // Clear existing dots
+            for (let i = 0; i < totalImages; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.setAttribute('data-index', i);
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            updateDots();
+        };
+
+        const updateDots = () => {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        };
+
+        const showSlide = (index) => {
+            if (!carouselSlide) return;
+            currentIndex = (index + totalImages) % totalImages; // Loop around
+            carouselSlide.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+        };
+
+        const moveSlide = (step) => {
+            showSlide(currentIndex + step);
+            resetAutoSlide(); // Reset timer on manual navigation
+        };
+
+        const goToSlide = (index) => {
+            showSlide(index);
+            resetAutoSlide(); // Reset timer on manual navigation
+        };
+
+        const startAutoSlide = () => {
+            autoSlideInterval = setInterval(() => {
+                moveSlide(1);
+            }, 5000); // Change image every 5 seconds
+        };
+
+        const resetAutoSlide = () => {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        };
+
+        // Initialize carousel on page load
+        document.addEventListener('DOMContentLoaded', () => {
+             if (totalImages > 0) {
+                createDots();
+                showSlide(0); // Show the first slide
+                startAutoSlide(); // Start auto-sliding
+            }
+        });
+    </script>
+</body>
+</html>
